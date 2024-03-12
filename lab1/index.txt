@@ -50,4 +50,6 @@
 			<p class="otstup" style="text-indent: 50px">1 литр</p>
 			<p class="list-buy">Картошка</p>
 			<p class="otstup" style="text-indent: 50px">2 кг</p>
-			
+			<p class="about">О нас</p>
+				<img src="img/summer.jpeg"/>
+			</a>
