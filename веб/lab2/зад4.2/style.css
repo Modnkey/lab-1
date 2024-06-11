@@ -1,0 +1,11 @@
+.f1 {
+    background: url("м.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.f2 {
+    background: url("м.jpg");
+    background-size: contain;
+    background-repeat: repeat;
+}

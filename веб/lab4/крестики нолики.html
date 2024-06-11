@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Крестики-нолики</title>
+    <style>
+        table {
+            margin: auto;
+        }
+        td {
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid black;
+            font-size: 40px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2 id="turn">Ходит игрок 1</h2>
+    <table id="game-table">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <h2 id="result"></h2>
+
+    <script>
+        let currentPlayer = 1;
+        let gameTable = document.getElementById('game-table');
+        let turnElement = document.getElementById('turn');
+        let resultElement = document.getElementById('result');
+
+        gameTable.addEventListener('click', function(event) {
+            if (event.target.tagName === 'TD' && event.target.textContent === '') {
+                let symbol = currentPlayer === 1? 'X' : 'O';
+                event.target.textContent = symbol;
+
+                checkWin();
+
+                currentPlayer = 3 - currentPlayer; // Switch player
+                turnElement.textContent = `Ходит игрок ${currentPlayer}`;
+            }
+        });
+
+        function checkWin() {
+            let tableCells = gameTable.getElementsByTagName('td');
+            let winCombinations = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+
+            for (let i = 0; i < winCombinations.length; i++) {
+                let combination = winCombinations[i];
+                let symbol = tableCells[combination[0]].textContent;
+
+                if (symbol!== '' && symbol === tableCells[combination[1]].textContent && symbol === tableCells[combination[2]].textContent) {
+                    resultElement.textContent = `Игрок ${currentPlayer === 1? 2 : 1} победил!`;
+                    return;
+                }
+            }
+        }
+    </script>
+</body>
+</html>
